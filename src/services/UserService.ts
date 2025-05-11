@@ -32,5 +32,16 @@ export class UserService {
     getAllUsers = () => {
         return this.db
     }
-}
 
+    deleteUser = (email: string): boolean => {
+        const userIndex = this.db.findIndex(user => user.email === email)
+        
+        if (userIndex === -1) {
+            return false
+        }
+
+        this.db.splice(userIndex, 1)
+        console.log('Usuário removido', this.db)
+        return true
+    }
+}
